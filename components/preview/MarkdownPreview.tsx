@@ -75,6 +75,7 @@ export function MarkdownPreview() {
     return (
       <div 
         id="preview"
+        dir="auto"
         data-testid="preview-pane"
         className={`h-full flex items-center justify-center ${
           enableNightMode ? 'bg-[#1e1e1e]' : 'bg-transparent'
@@ -89,6 +90,7 @@ export function MarkdownPreview() {
     <div
       ref={containerRef}
       id="preview"
+      dir="auto"
       data-testid="preview-pane"
       className={`preview-html h-full overflow-auto p-6 ${
         enableNightMode ? 'dark bg-[#1e1e1e]' : 'bg-transparent'
