@@ -3,9 +3,11 @@
 import { useEffect, useState, useRef } from "react";
 import { useStore } from "@/stores/store";
 import { renderMarkdown } from "@/lib/markdown";
+import { useI18n } from "@/lib/i18n/I18nProvider";
 
 export function MarkdownPreview() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const { t } = useI18n();
   const currentDocument = useStore((state) => state.currentDocument);
   const enableScrollSync = useStore((state) => state.settings.enableScrollSync);
   const enableNightMode = useStore((state) => state.settings.enableNightMode);
@@ -71,14 +73,14 @@ export function MarkdownPreview() {
 
   if (!sanitizedHtml && !currentDocument?.body) {
     return (
-      <div
+      <div 
         id="preview"
         data-testid="preview-pane"
         className={`h-full flex items-center justify-center ${
           enableNightMode ? 'bg-[#1e1e1e]' : 'bg-transparent'
         }`}
       >
-        <p className="text-text-muted text-sm">Start typing to see a preview</p>
+        <p className="text-text-muted text-sm">{t("preview.emptyState")}</p>
       </div>
     );
   }
